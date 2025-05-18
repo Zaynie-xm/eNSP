@@ -1,0 +1,446 @@
+<SW1>dis cu
+#
+sysname SW1
+#
+vlan batch 10 20 30 40
+#
+cluster enable
+ntdp enable
+ndp enable
+#
+drop illegal-mac alarm
+#
+diffserv domain default
+#
+drop-profile default
+#
+aaa
+ authentication-scheme default
+ authorization-scheme default
+ accounting-scheme default
+ domain default
+ domain default_admin
+ local-user admin password simple admin
+ local-user admin service-type http
+#
+interface Vlanif1
+#
+interface Vlanif10
+#
+interface MEth0/0/1
+#
+interface Eth-Trunk1
+ port link-type trunk
+ port trunk allow-pass vlan 2 to 4094
+#
+interface Ethernet0/0/1
+ port link-type access
+ port default vlan 10
+#
+interface Ethernet0/0/2
+ port link-type access
+ port default vlan 20
+#
+interface Ethernet0/0/3
+ port link-type access
+ port default vlan 30
+#
+interface Ethernet0/0/4
+#
+interface Ethernet0/0/5
+#
+interface Ethernet0/0/6
+#
+interface Ethernet0/0/7
+#
+interface Ethernet0/0/8
+#
+interface Ethernet0/0/9
+#
+interface Ethernet0/0/10
+#
+interface Ethernet0/0/11
+#
+interface Ethernet0/0/12
+#
+interface Ethernet0/0/13
+#
+interface Ethernet0/0/14
+#
+interface Ethernet0/0/15
+#
+interface Ethernet0/0/16
+#
+interface Ethernet0/0/17
+#
+interface Ethernet0/0/18
+#
+interface Ethernet0/0/19
+#
+interface Ethernet0/0/20
+#
+interface Ethernet0/0/21
+#
+interface Ethernet0/0/22
+#
+interface GigabitEthernet0/0/1
+ eth-trunk 1
+#
+interface GigabitEthernet0/0/2
+ eth-trunk 1
+#
+interface NULL0
+#
+ip route-static 10.0.35.112 255.255.255.248 10.0.35.116
+#
+user-interface con 0
+user-interface vty 0 4
+#
+return
+
+
+
+<SW2>dis cu
+#
+sysname SW2
+#
+vlan batch 10 20 30 40
+#
+cluster enable
+ntdp enable
+ndp enable
+#
+drop illegal-mac alarm
+#
+diffserv domain default
+#
+drop-profile default
+#
+aaa
+ authentication-scheme default
+ authorization-scheme default
+ accounting-scheme default
+ domain default
+ domain default_admin
+ local-user admin password simple admin
+ local-user admin service-type http
+#
+interface Vlanif1
+#
+interface MEth0/0/1
+#
+interface Eth-Trunk2
+ port link-type trunk
+ port trunk allow-pass vlan 2 to 4094
+#
+interface Ethernet0/0/1
+ port link-type access
+ port default vlan 10
+#
+interface Ethernet0/0/2
+ port link-type access
+ port default vlan 20
+#
+interface Ethernet0/0/3
+ port link-type access
+ port default vlan 30
+#
+interface Ethernet0/0/4
+#
+interface Ethernet0/0/5
+#
+interface Ethernet0/0/6
+#
+interface Ethernet0/0/7
+#
+interface Ethernet0/0/8
+#
+interface Ethernet0/0/9
+#
+interface Ethernet0/0/10
+#
+interface Ethernet0/0/11
+#
+interface Ethernet0/0/12
+#
+interface Ethernet0/0/13
+#
+interface Ethernet0/0/14
+#
+interface Ethernet0/0/15
+#
+interface Ethernet0/0/16
+#
+interface Ethernet0/0/17
+#
+interface Ethernet0/0/18
+#
+interface Ethernet0/0/19
+#
+interface Ethernet0/0/20
+#
+interface Ethernet0/0/21
+#
+interface Ethernet0/0/22
+#
+interface GigabitEthernet0/0/1
+ eth-trunk 2
+#
+interface GigabitEthernet0/0/2
+ eth-trunk 2
+#
+interface NULL0
+#
+user-interface con 0
+user-interface vty 0 4
+#
+port-group trunk
+#
+return
+
+
+
+<SW3>dis cu
+#
+sysname SW3
+#
+vlan batch 10 20 30 40 50
+#
+cluster enable
+ntdp enable
+ndp enable
+#
+undo nap slave enable
+#
+drop illegal-mac alarm
+#
+diffserv domain default
+#
+drop-profile default
+#
+aaa
+ authentication-scheme default
+ authorization-scheme default
+ accounting-scheme default
+ domain default
+ domain default_admin
+ local-user admin password simple admin
+ local-user admin service-type http
+#
+interface Vlanif1
+#
+interface Vlanif10
+ ip address 10.0.35.3 255.255.255.192
+#
+interface Vlanif20
+ ip address 10.0.35.67 255.255.255.224
+#
+interface Vlanif30
+ ip address 10.0.35.99 255.255.255.240
+#
+interface Vlanif40
+ ip address 10.0.35.116 255.255.255.248
+#
+interface Vlanif50
+ ip address 10.0.35.253 255.255.255.252
+#
+interface MEth0/0/1
+#
+interface Eth-Trunk1
+ port link-type trunk
+ port trunk allow-pass vlan 2 to 4094
+#
+interface Eth-Trunk2
+ port link-type trunk
+ port trunk allow-pass vlan 2 to 4094
+#
+interface GigabitEthernet0/0/1
+ eth-trunk 1
+#
+interface GigabitEthernet0/0/2
+ eth-trunk 1
+#
+interface GigabitEthernet0/0/3
+ eth-trunk 2
+#
+interface GigabitEthernet0/0/4
+ eth-trunk 2
+#
+interface GigabitEthernet0/0/5
+ port link-type access
+ port default vlan 50
+#
+interface GigabitEthernet0/0/6
+ port link-type access
+ port default vlan 40
+#
+interface GigabitEthernet0/0/7
+ port link-type access
+ port default vlan 40
+#
+interface GigabitEthernet0/0/8
+#
+interface GigabitEthernet0/0/9
+#
+interface GigabitEthernet0/0/10
+#
+interface GigabitEthernet0/0/11
+#
+interface GigabitEthernet0/0/12
+#
+interface GigabitEthernet0/0/13
+#
+interface GigabitEthernet0/0/14
+#
+interface GigabitEthernet0/0/15
+#
+interface GigabitEthernet0/0/16
+#.
+interface GigabitEthernet0/0/17
+#
+interface GigabitEthernet0/0/18
+#
+interface GigabitEthernet0/0/19
+#
+interface GigabitEthernet0/0/20
+#
+interface GigabitEthernet0/0/21
+#
+interface GigabitEthernet0/0/22
+#
+interface GigabitEthernet0/0/23
+#
+interface GigabitEthernet0/0/24
+#
+interface NULL0
+#
+ip route-static 0.0.0.0 0.0.0.0 10.0.35.254
+ip route-static 202.103.24.0 255.255.255.0 10.0.35.254
+#
+user-interface con 0
+user-interface vty 0 4
+ user privilege level 15
+ set authentication password simple 20221023135
+#
+port-group default
+#
+return
+
+
+
+
+<AR1>dis cu
+[V200R003C00]
+#
+ sysname AR1
+#
+ snmp-agent local-engineid 800007DB03000000000000
+ snmp-agent 
+#
+ clock timezone China-Standard-Time minus 08:00:00
+#
+portal local-server load flash:/portalpage.zip
+#
+ drop illegal-mac alarm
+#
+ wlan ac-global carrier id other ac id 0
+#
+ set cpu-usage threshold 80 restore 75
+#
+aaa 
+ authentication-scheme default
+ authorization-scheme default
+ accounting-scheme default
+ domain default 
+ domain default_admin 
+ local-user admin password cipher %$%$K8m.Nt84DZ}e#<0`8bmE3Uw}%$%$
+ local-user admin service-type http
+#
+firewall zone Local
+ priority 15
+#
+interface GigabitEthernet0/0/0
+ ip address 10.0.35.254 255.255.255.252 
+#
+interface GigabitEthernet0/0/1
+ ip address 202.103.24.50 255.255.255.0 
+#
+interface GigabitEthernet0/0/2
+#
+interface NULL0
+#
+ip route-static 0.0.0.0 0.0.0.0 202.103.24.68
+ip route-static 10.0.35.0 255.255.255.192 10.0.35.253
+ip route-static 10.0.35.64 255.255.255.224 10.0.35.253
+ip route-static 10.0.35.96 255.255.255.240 10.0.35.253
+ip route-static 10.0.35.112 255.255.255.248 10.0.35.253
+#
+user-interface con 0
+ authentication-mode password
+user-interface vty 0 4
+ authentication-mode password
+ user privilege level 15
+ set authentication password cipher %$%$QjY>PDIyAZ]OHBTJ;0/5,"`[X\hBU>-$e)`huhI8
+op[#"`^,%$%$
+user-interface vty 16 20
+#
+wlan ac
+#
+return
+
+
+
+<AR2>dis cu
+[V200R003C00]
+#
+ sysname AR2
+#
+ snmp-agent local-engineid 800007DB03000000000000
+ snmp-agent 
+#
+ clock timezone China-Standard-Time minus 08:00:00
+#
+portal local-server load flash:/portalpage.zip
+#
+ drop illegal-mac alarm
+#
+ wlan ac-global carrier id other ac id 0
+#
+ set cpu-usage threshold 80 restore 75
+#
+aaa 
+ authentication-scheme default
+ authorization-scheme default
+ accounting-scheme default
+ domain default 
+ domain default_admin 
+ local-user admin password cipher %$%$K8m.Nt84DZ}e#<0`8bmE3Uw}%$%$
+ local-user admin service-type http
+#
+firewall zone Local
+ priority 15
+#
+interface GigabitEthernet0/0/0
+ ip address 202.103.24.68 255.255.255.0 
+#
+interface GigabitEthernet0/0/1
+ ip address 192.168.2.2 255.255.255.0 
+#
+interface GigabitEthernet0/0/2
+#
+interface NULL0
+#
+ip route-static 10.0.35.0 255.255.255.192 202.103.24.50
+ip route-static 10.0.35.64 255.255.255.224 202.103.24.50
+ip route-static 10.0.35.96 255.255.255.240 202.103.24.50
+ip route-static 10.0.35.112 255.255.255.248 202.103.24.50
+ip route-static 10.0.35.252 255.255.255.252 202.103.24.50
+#
+user-interface con 0
+ authentication-mode password
+user-interface vty 0 4
+user-interface vty 16 20
+#
+wlan ac
+#
+return
